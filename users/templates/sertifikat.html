@@ -49,7 +49,7 @@
                             <a href="{% url 'team' %}" class="dropdown-item">Instructors</a>
                         </div>
                     </div>
-                    <a href="{% url 'contact' %}" class="nav-item nav-link active">Aloqa</a>
+                    <a href="{% url 'contact' %}" class="nav-item nav-link">Aloqa</a>
                 </div>
                 {% if user.is_authenticated %}
                 <div class="dropdown">
@@ -74,16 +74,19 @@
     </div>
     <!-- Navbar End -->
 
+
     <!-- Header Start -->
     <div class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom" style="margin-bottom: 90px;">
         <div class="container text-center py-5">
-            <h1 class="text-white display-1">Aloqa</h1>
+            <h1 class="text-white display-1">Sertifikatlarim</h1>
             <div class="d-inline-flex text-white mb-5">
                 <p class="m-0 text-uppercase"><a class="text-white" href="{% url 'index' %}">Bosh sahifa</a></p>
                 <i class="fa fa-angle-double-right pt-1 px-3"></i>
-                <p class="m-0 text-uppercase">Aloqa</p>
+                <p class="m-0 text-uppercase">Darslar</p>
             </div>
-            <div class="mx-auto mb-5" style="width: 100%; max-width: 600px;">
+        </div>
+        <div class="mx-auto mb-5" style="width: 100%; max-width: 600px;">
+            <form method="get" action="{% url 'course' %}">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <button class="btn btn-outline-light bg-white text-body px-4 dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Darslar</button>
@@ -98,77 +101,48 @@
                         <button class="btn btn-secondary px-4 px-lg-5">Search</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
     <!-- Header End -->
 
-    <!-- Contact Start -->
+
+    <!-- Courses Start -->
     <div class="container-fluid py-5">
         <div class="container py-5">
-            <div class="row align-items-center">
-                <div class="col-lg-5 mb-5 mb-lg-0">
-                    <div class="bg-light d-flex flex-column justify-content-center px-5" style="height: 450px;">
-                        <div class="d-flex align-items-center mb-5">
-                            <div class="btn-icon bg-primary mr-4">
-                                <i class="fa fa-2x fa-map-marker-alt text-white"></i>
-                            </div>
-                            <div class="mt-n1">
-                                <h4>Bizning manzil</h4>
-                                <p class="m-0">TATU</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-5">
-                            <div class="btn-icon bg-secondary mr-4">
-                                <i class="fa fa-2x fa-phone-alt text-white"></i>
-                            </div>
-                            <div class="mt-n1">
-                                <h4>Telefon raqam</h4>
-                                <p class="m-0">+998934305227</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <div class="btn-icon bg-warning mr-4">
-                                <i class="fa fa-2x fa-envelope text-white"></i>
-                            </div>
-                            <div class="mt-n1">
-                                <h4>Email pochta</h4>
-                                <p class="m-0">islomnosirov@gmail.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-7">
-                    <div class="section-title position-relative mb-4">
-                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Qanday yordam kerak?</h6>
-                        <h1 class="display-4">Bizga xabar yuboring</h1>
-                    </div>
-                    <div class="contact-form">
-                        <form>
-                            <div class="row">
-                                <div class="col-6 form-group">
-                                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Your Name" required="required">
-                                </div>
-                                <div class="col-6 form-group">
-                                    <input type="email" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Your Email" required="required">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Subject" required="required">
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control border-top-0 border-right-0 border-left-0 p-0" rows="5" placeholder="Message" required="required"></textarea>
-                            </div>
-                            <div>
-                                <button class="btn btn-primary py-3 px-5" type="submit">Xabar yuborish</button>
-                            </div>
-                        </form>
+            <div class="row mx-0 justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title text-center position-relative mb-5">
+                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Bizning darslar</h6>
+                        <h1 class="display-4">Yangi darslarni biz bilan kuzatib boring</h1>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                {% for course in courses %}
+                <div class="col-lg-4 col-md-6 pb-4">
+                    <div class="card h-100 shadow-sm">
+                        <img class="card-img-top" src="{{ course.image.url }}" alt="{{ course.title }}">
+                        <div class="card-body">
+                            <h4 class="card-title text-center">{{ course.title }}</h4>
+                            <p class="card-text">{{ course.description|truncatewords:15 }}</p>
+                        </div>
+                        <div class="card-footer bg-white border-0">
+                            <div class="d-flex justify-content-between">
+                                <span class="text-muted"><i class="fa fa-user mr-2"></i>{{ course.instructor }}</span>
+                                <span class="text-muted"><i class="fa fa-star mr-2"></i>{{ course.rating }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <p>No courses available.</p>
+                {% endfor %}
+            </div>
         </div>
     </div>
-    <!-- Contact End -->
+    <!-- Courses End -->
+
 
     <!-- Footer Start -->
     <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5" style="margin-top: 90px;">
@@ -178,7 +152,8 @@
                     <a href="{% url 'index' %}" class="navbar-brand">
                         <h1 class="mt-n2 text-uppercase text-white"><i class="fa fa-book-reader mr-3"></i>IMS</h1>
                     </a>
-                    <p class="m-0">"IMS - tuzilma va xizmarlar" online platformasi <br>Barcha huquqlar himoyalangan.</p>
+                    <p class="m-0">"IMS - tuzilma va xizmarlar" online platformasi <br>
+                        Barcha huquqlar himoyalangan.</p>
                 </div>
                 <div class="col-md-6 mb-5">
                     <div class="d-flex justify-content-start">
@@ -187,14 +162,45 @@
                         <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-instagram"></i></a>
                         <a class="text-white" href="#"><i class="fab fa-2x fa-youtube"></i></a>
                     </div>
+                    
                 </div>
+            </div>
+            <div class="row justify-content-between">
+                <div class="col-lg-2 col-md-6 mb-5">
+                    <a href="#" class="navbar-brand">
+                        <h3 class="text-white mb-4">Loyiha haqida</h3>
+                    </a>
+                    
+                </div>
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <a href="#" class="navbar-brand">
+                        <h3 class="text-white mb-4 ">Foydalanish shartlari</h3>
+                    </a>
+                  
+                </div>
+                <div class="col-lg-2 col-md-6 mb-5">
+                    <a href="#" class="navbar-brand">
+                        <h3 class="text-white mb-4">Ommaviy oferta</h3>
+                    </a>
+                    
+                </div>
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <a href="#" class="navbar-brand">
+                        <h3 class="text-white mb-4">Foydalanish yo'riqnomasi
+                        </h3>
+                    </a>
+                    
+                </div>
+               
             </div>
         </div>
     </div>
     <!-- Footer End -->
 
+
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

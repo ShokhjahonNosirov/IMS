@@ -52,20 +52,20 @@
                     <a href="{% url 'contact' %}" class="nav-item nav-link">Aloqa</a>
                 </div>
                 {% if user.is_authenticated %}
-                    <div class="dropdown">
-                        <a class="btn btn-primary dropdown-toggle py-2 px-4 d-none d-lg-block" href="#" role="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Profil
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                            <a href="{% url 'course' %}" class="dropdown-item">Ma'lumotlarim</a>
-                            <a href="{% url 'course' %}" class="dropdown-item">Mening kurslarim</a>
-                            <a href="{% url 'course' %}" class="dropdown-item">Sertifikatlarim</a>
-                            <form method="post" action="{% url 'logout' %}">
-                                {% csrf_token %}
-                                <button type="submit" class="dropdown-item">Tizimdan chiqish</button>
-                            </form>
-                        </div>
+                <div class="dropdown">
+                    <a class="btn btn-primary dropdown-toggle py-2 px-4 d-none d-lg-block" href="#" role="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profil
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <a href="{% url 'malumot' %}" class="dropdown-item">Ma'lumotlarim</a>
+                        <a href="{% url 'mycourse' %}" class="dropdown-item">Mening kurslarim</a>
+                        <a href="{% url 'sertifikat' %}" class="dropdown-item">Sertifikatlarim</a>
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="dropdown-item">Tizimdan chiqish</button>
+                        </form>
                     </div>
+                </div>
                 {% else %}
                     <a href="{% url 'login' %}" class="btn btn-primary py-2 px-4 d-none d-lg-block">Kirish</a>
                 {% endif %}
@@ -78,7 +78,7 @@
     <!-- Header Start -->
     <div class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom" style="margin-bottom: 90px;">
         <div class="container text-center py-5">
-            <h1 class="text-white display-1">Darslar</h1>
+            <h1 class="text-white display-1">Mening darslarim</h1>
             <div class="d-inline-flex text-white mb-5">
                 <p class="m-0 text-uppercase"><a class="text-white" href="{% url 'index' %}">Bosh sahifa</a></p>
                 <i class="fa fa-angle-double-right pt-1 px-3"></i>
@@ -94,8 +94,8 @@
                         <button class="btn btn-outline-light bg-white text-body px-4 dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Darslar</button>
                         <div class="dropdown-menu">
                             <a href=" {% url 'course' %}" class="dropdown-item">Video darslar</a>
-                            <a href="{% url 'course' %}" class="dropdown-item">Kitoblar</a>
-                            <a href="{% url 'course' %}" class="dropdown-item">Instructors</a>
+                            <a href="{% url 'books' %}" class="dropdown-item">Kitoblar</a>
+                            <a href="{% url 'team' %}" class="dropdown-item">Instructors</a>
                         </div>
                     </div>
                     <input type="text" class="form-control border-light" style="padding: 30px 25px;" placeholder="Keyword">

@@ -32,6 +32,18 @@ def contact(request):
 def course(request):
     return render(request, 'course.html')
 
+def malumot(request):
+    return render(request, 'malumot.html')
+
+def mycourse(request):
+    return render(request, 'mycourse.html')   
+
+def books(request):
+    return render(request, 'books.html')   
+
+def sertifikat(request):
+    return render(request, 'sertifikat.html')   
+
 def detail(request):
     return render(request, 'detail.html')
 

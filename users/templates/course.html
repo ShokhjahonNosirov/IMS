@@ -45,8 +45,8 @@
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Darslar</a>
                         <div class="dropdown-menu m-0">
                             <a href=" {% url 'course' %}" class="dropdown-item">Video darslar</a>
-                            <a href="{% url 'course' %}" class="dropdown-item">Kitoblar</a>
-                            <a href="{% url 'course' %}" class="dropdown-item">Instructors</a>
+                            <a href="{% url 'books' %}" class="dropdown-item">Kitoblar</a>
+                            <a href="{% url 'team' %}" class="dropdown-item">Instructors</a>
                         </div>
                     </div>
                     <a href="{% url 'contact' %}" class="nav-item nav-link">Aloqa</a>
@@ -57,9 +57,9 @@
                         Profil
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a href="{% url 'course' %}" class="dropdown-item">Ma'lumotlarim</a>
-                        <a href="{% url 'course' %}" class="dropdown-item">Mening kurslarim</a>
-                        <a href="{% url 'course' %}" class="dropdown-item">Sertifikatlarim</a>
+                        <a href="{% url 'malumot' %}" class="dropdown-item">Ma'lumotlarim</a>
+                        <a href="{% url 'mycourse' %}" class="dropdown-item">Mening kurslarim</a>
+                        <a href="{% url 'sertifikat' %}" class="dropdown-item">Sertifikatlarim</a>
                         <form method="post" action="{% url 'logout' %}">
                             {% csrf_token %}
                             <button type="submit" class="dropdown-item">Tizimdan chiqish</button>
@@ -92,8 +92,8 @@
                         <button class="btn btn-outline-light bg-white text-body px-4 dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Darslar</button>
                         <div class="dropdown-menu">
                             <a href=" {% url 'course' %}" class="dropdown-item">Video darslar</a>
-                            <a href="{% url 'course' %}" class="dropdown-item">Kitoblar</a>
-                            <a href="{% url 'course' %}" class="dropdown-item">Instructors</a>
+                            <a href="{% url 'books' %}" class="dropdown-item">Kitoblar</a>
+                            <a href="{% url 'team' %}" class="dropdown-item">Instructors</a>
                         </div>
                     </div>
                     <input type="text" class="form-control border-light" style="padding: 30px 25px;" placeholder="Keyword">
