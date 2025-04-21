@@ -1,5 +1,5 @@
 # users/views.py
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout
 from .forms import RegisterForm
 from .models import Course
@@ -63,5 +63,9 @@ def course_list(request):
     else:
         courses = Course.objects.all()  # Show all courses if no query
     return render(request, 'course.html', {'courses': courses, 'query': query})
+
+def course_detail(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    return render(request, 'detail.html', {'course': course})
 
 
