@@ -2,7 +2,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout
 from .forms import RegisterForm
-from .models import Course
+from .models import Course, Book
+from django.contrib.auth.decorators import login_required
 
 def register(request):
     if request.method == 'POST':
@@ -35,11 +36,19 @@ def course(request):
 def malumot(request):
     return render(request, 'malumot.html')
 
+@login_required
 def mycourse(request):
-    return render(request, 'mycourse.html')   
+    my_courses = request.user.my_courses.all()  # Fetch courses added by the user
+    return render(request, 'mycourse.html', {'my_courses': my_courses})
 
 def books(request):
-    return render(request, 'books.html')   
+    query = request.GET.get('q', '').strip()  # Get the search query and strip extra spaces
+    if query:
+        books = Book.objects.filter(title__icontains=query)  # Filter books by title
+        # print(f"Search Query: {query}, Results: {books}")  # Debugging
+    else:
+        books = Book.objects.all()  # Show all books if no query
+    return render(request, 'books.html', {'books': books, 'query': query})
 
 def sertifikat(request):
     return render(request, 'sertifikat.html')   
@@ -57,9 +66,10 @@ def testimonial(request):
     return render(request, 'testimonial.html')
 
 def course_list(request):
-    query = request.GET.get('q', '')  # Default to an empty string if 'q' is not in the request
+    query = request.GET.get('q', '').strip()  # Get the search query and strip extra spaces
     if query:
         courses = Course.objects.filter(title__icontains=query)  # Filter courses by title
+        print(f"Search Query: {query}, Results: {courses}")  # Debugging
     else:
         courses = Course.objects.all()  # Show all courses if no query
     return render(request, 'course.html', {'courses': courses, 'query': query})
@@ -67,5 +77,11 @@ def course_list(request):
 def course_detail(request, pk):
     course = get_object_or_404(Course, pk=pk)
     return render(request, 'detail.html', {'course': course})
+
+@login_required
+def add_to_my_courses(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    course.enrolled_users.add(request.user)  # Add the user to the course's enrolled users
+    return redirect('course_detail', pk=pk)  # Redirect back to the course detail page
 
 

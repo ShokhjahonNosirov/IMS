@@ -86,7 +86,7 @@
             </div>
         </div>
         <div class="mx-auto mb-5" style="width: 100%; max-width: 600px;">
-            <form method="get" action="{% url 'course' %}">
+            <form method="get" action="{% url 'books' %}">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <button class="btn btn-outline-light bg-white text-body px-4 dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Darslar</button>
@@ -96,9 +96,9 @@
                             <a href="{% url 'team' %}" class="dropdown-item">Instructors</a>
                         </div>
                     </div>
-                    <input type="text" class="form-control border-light" style="padding: 30px 25px;" placeholder="Keyword">
+                    <input type="text" name="q" class="form-control border-light" style="padding: 30px 25px;" placeholder="Search books..." value="{{ query }}">
                     <div class="input-group-append">
-                        <button class="btn btn-secondary px-4 px-lg-5">Search</button>
+                        <button class="btn btn-secondary px-4 px-lg-5" type="submit">Search</button>
                     </div>
                 </div>
             </form>
@@ -113,28 +113,33 @@
             <div class="row mx-0 justify-content-center">
                 <div class="col-lg-8">
                     <div class="section-title text-center position-relative mb-5">
-                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Bizning darslar</h6>
-                        <h1 class="display-4">Yangi darslarni biz bilan kuzatib boring</h1>
+                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Bizning kitoblar</h6>
+                        <h1 class="display-4">Yangi kitoblarni biz bilan kuzatib boring</h1>
                     </div>
                 </div>
             </div>
             <div class="row">
+                {% for book in books %}
                 <div class="col-lg-4 col-md-6 pb-4">
-                    <a href="/static/12345.pdf" style="text-decoration: none;" target="_blank">
+                    <a href="{{ book.file.url }}" style="text-decoration: none;" target="_blank">
                         <div class="card h-100 shadow-sm">
-                            <img class="card-img-top" src="https://storage.kun.uz/source/uploads/2017-1112/Maruf/kitob17.jpg" >
+                            <img class="card-img-top" src="{{ book.image.url }}" alt="{{ book.title }}">
                             <div class="card-body">
-                                <h4 class="card-title text-center">IMS tuzilma va xizmarlar</h4>
+                                <h4 class="card-title text-center">{{ book.title }}</h4>
+                                <p class="text-center text-muted">By {{ book.author }}</p>
                             </div>
                             <div class="card-footer bg-white border-0">
                                 <div class="d-flex justify-content-between">
-                                    <span class="text-muted"><i class="fa fa-user mr-2"></i>Nosirov </span>
-                                    <span class="text-muted"><i class="fa fa-star mr-2"></i>5</span>
+                                    <span class="text-muted"><i class="fa fa-user mr-2"></i>{{ book.author }}</span>
+                                    <span class="text-muted"><i class="fa fa-star mr-2"></i>{{ book.rating }}</span>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
+                {% empty %}
+                <p class="text-center">No books found for your search.</p>
+                {% endfor %}
             </div>
         </div>
     </div>

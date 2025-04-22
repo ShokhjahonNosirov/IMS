@@ -3,9 +3,14 @@ from django.contrib.auth.models import User
 
 # Register your models here.
 
-from .models import Course
+from .models import Course, Book
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
     list_display = ('title', 'instructor', 'rating', 'created_at')
     search_fields = ('title', 'instructor')
+
+@admin.register(Book)
+class BookAdmin(admin.ModelAdmin):
+    list_display = ('title', 'author', 'rating')
+    search_fields = ('title', 'author')

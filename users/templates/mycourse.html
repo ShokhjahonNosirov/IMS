@@ -121,25 +121,19 @@
                 </div>
             </div>
             <div class="row">
+                {% for course in my_courses %}
                 <div class="col-lg-4 col-md-6 pb-4">
                     <div class="card h-100 shadow-sm">
-                        <a href="#">
-                            <img class="card-img-top" src="https://storage.kun.uz/source/uploads/2017-1112/Maruf/kitob17.jpg" alt="">
-                        </a>
+                        <img class="card-img-top" src="{{ course.image.url }}" alt="{{ course.title }}">
                         <div class="card-body">
-                            <h4 class="card-title text-center">
-                                <a href="#" class="text-dark">Linux</a>
-                            </h4>
-                            <p class="card-text">123</p>
-                        </div>
-                        <div class="card-footer bg-white border-0">
-                            <div class="d-flex justify-content-between">
-                                <span class="text-muted"><i class="fa fa-user mr-2"></i>Nosirov</span>
-                                <span class="text-muted"><i class="fa fa-star mr-2"></i>8</span>
-                            </div>
+                            <h4 class="card-title"><a href="{% url 'course_detail' course.pk %}" class="text-dark">{{ course.title }}</a></h4>
+                            <p class="card-text">{{ course.description|truncatewords:15 }}</p>
                         </div>
                     </div>
                 </div>
+                {% empty %}
+                <p>No courses added yet.</p>
+                {% endfor %}
             </div>
         </div>
     </div>
