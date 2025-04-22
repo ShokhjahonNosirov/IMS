@@ -132,6 +132,22 @@
                                     <span class="text-muted"><i class="fa fa-user mr-2"></i>{{ course.instructor }}</span>
                                     <span class="text-muted"><i class="fa fa-star mr-2"></i>{{ course.rating }}</span>
                                 </div>
+
+                    <div class="card h-100 shadow-sm">
+                        <a href="{% url 'course_detail' course.pk %}">
+                            <img class="card-img-top" src="{{ course.image.url }}" alt="{{ course.title }}">
+                        </a>
+                        <div class="card-body">
+                            <h4 class="card-title text-center">
+                                <a href="{% url 'course_detail' course.pk %}" class="text-dark">{{ course.title }}</a>
+                            </h4>
+                            <p class="card-text">{{ course.description|truncatewords:15 }}</p>
+                        </div>
+                        <div class="card-footer bg-white border-0">
+                            <div class="d-flex justify-content-between">
+                                <span class="text-muted"><i class="fa fa-user mr-2"></i>{{ course.instructor }}</span>
+                                <span class="text-muted"><i class="fa fa-star mr-2"></i>{{ course.rating }}</span>
+
                             </div>
                         </div>
                     </a>

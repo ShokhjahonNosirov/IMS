@@ -44,8 +44,12 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Darslar</a>
                         <div class="dropdown-menu m-0">
+<<<<<<< HEAD
                             <a href=" {% url 'course' %}" class="dropdown-item">Video darslar</a>
                             <a href="{% url 'books' %}" class="dropdown-item">Kitoblar</a>
+=======
+                            <a href="{% url 'feature' %}" class="dropdown-item">Our Features</a>
+>>>>>>> 1ff6e7c78f77e23ea701aa6c42623161fee11ce4
                             <a href="{% url 'team' %}" class="dropdown-item">Instructors</a>
                         </div>
                     </div>
@@ -81,6 +85,7 @@
                 <div class="col-lg-8">
                     <div class="mb-5">
                         <div class="section-title position-relative mb-5">
+<<<<<<< HEAD
                             <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Dars haqida</h6>
                             <h1 class="display-4">Linux</h1>
                         </div>
@@ -92,6 +97,13 @@
                             consetetur eirmod. Kasd accusam sit ipsum sadipscing et at at sanctus et. Ipsum sit
                             gubergren dolores et, consetetur justo invidunt at et aliquyam ut et vero clita. Diam sea
                             sea no sed dolores diam nonumy, gubergren sit stet no diam kasd vero.</p>
+=======
+                            <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Course Detail</h6>
+                            <h1 class="display-4">{{ course.title }}</h1>
+                        </div>
+                        <img class="img-fluid rounded w-100 mb-4" src="{{ course.image.url }}" alt="{{ course.title }}">
+                        <p>{{ course.description }}</p>
+>>>>>>> 1ff6e7c78f77e23ea701aa6c42623161fee11ce4
                     </div>
                </div>
 
