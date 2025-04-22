@@ -121,18 +121,6 @@
             <div class="row">
                 {% for course in courses %}
                 <div class="col-lg-4 col-md-6 pb-4">
-                    <a href="{% url 'detail' %}" style="text-decoration: none;">
-                        <div class="card h-100 shadow-sm">
-                            <img class="card-img-top" src="{{ course.image.url }}" alt="{{ course.title }}">
-                            <div class="card-body">
-                                <h4 class="card-title text-center">{{ course.title }}</h4>
-                            </div>
-                            <div class="card-footer bg-white border-0">
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-muted"><i class="fa fa-user mr-2"></i>{{ course.instructor }}</span>
-                                    <span class="text-muted"><i class="fa fa-star mr-2"></i>{{ course.rating }}</span>
-                                </div>
-
                     <div class="card h-100 shadow-sm">
                         <a href="{% url 'course_detail' course.pk %}">
                             <img class="card-img-top" src="{{ course.image.url }}" alt="{{ course.title }}">
@@ -147,31 +135,13 @@
                             <div class="d-flex justify-content-between">
                                 <span class="text-muted"><i class="fa fa-user mr-2"></i>{{ course.instructor }}</span>
                                 <span class="text-muted"><i class="fa fa-star mr-2"></i>{{ course.rating }}</span>
-
                             </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
                 {% empty %}
                 <p>No courses available.</p>
                 {% endfor %}
-                
-                <div class="col-lg-4 col-md-6 pb-4">
-                    <a href="#" style="text-decoration: none;">
-                        <div class="card h-100 shadow-sm">
-                            <img class="card-img-top" src="{{ course.image.url }}" alt="{{ course.title }}">
-                            <div class="card-body">
-                                <h4 class="card-title text-center">{{ course.title }}</h4>
-                            </div>
-                            <div class="card-footer bg-white border-0">
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-muted"><i class="fa fa-user mr-2"></i>{{ course.instructor }}</span>
-                                    <span class="text-muted"><i class="fa fa-star mr-2"></i>{{ course.rating }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
             </div>
         </div>
     </div>

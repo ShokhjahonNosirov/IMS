@@ -17,6 +17,7 @@ urlpatterns = [
     path('malumot/', views.malumot, name='malumot'),
     path('mycourse/', views.mycourse, name='mycourse'),
     path('books/', views.books, name='books'),
+    path('detail/', views.detail, name='detail'),
     path('sertifikat/', views.sertifikat, name='sertifikat'),
     path('feature', views.feature, name='feature'),
     path('team', views.team, name='team'),
