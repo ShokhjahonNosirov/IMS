@@ -119,25 +119,22 @@
                 </div>
             </div>
             <div class="row">
-                {% for course in courses %}
                 <div class="col-lg-4 col-md-6 pb-4">
-                    <div class="card h-100 shadow-sm">
-                        <img class="card-img-top" src="{{ course.image.url }}" alt="{{ course.title }}">
-                        <div class="card-body">
-                            <h4 class="card-title text-center">{{ course.title }}</h4>
-                            <p class="card-text">{{ course.description|truncatewords:15 }}</p>
-                        </div>
-                        <div class="card-footer bg-white border-0">
-                            <div class="d-flex justify-content-between">
-                                <span class="text-muted"><i class="fa fa-user mr-2"></i>{{ course.instructor }}</span>
-                                <span class="text-muted"><i class="fa fa-star mr-2"></i>{{ course.rating }}</span>
+                    <a href="#" style="text-decoration: none;">
+                        <div class="card h-100 shadow-sm">
+                            <img class="card-img-top" src="https://storage.kun.uz/source/uploads/2017-1112/Maruf/kitob17.jpg" >
+                            <div class="card-body">
+                                <h4 class="card-title text-center">sertifikat</h4>
+                            </div>
+                            <div class="card-footer bg-white border-0">
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-muted"><i class="fa fa-user mr-2"></i>Nosirov </span>
+                                    <span class="text-muted"><i class="fa fa-star mr-2"></i>5</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-                {% empty %}
-                <p>No courses available.</p>
-                {% endfor %}
             </div>
         </div>
     </div>
