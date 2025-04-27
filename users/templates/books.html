@@ -88,14 +88,14 @@
         <div class="mx-auto mb-5" style="width: 100%; max-width: 600px;">
             <form method="get" action="{% url 'books' %}">
                 <div class="input-group">
-                    <div class="input-group-prepend">
+                    <!-- <div class="input-group-prepend">
                         <button class="btn btn-outline-light bg-white text-body px-4 dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Darslar</button>
                         <div class="dropdown-menu">
                             <a href=" {% url 'course' %}" class="dropdown-item">Video darslar</a>
                             <a href="{% url 'books' %}" class="dropdown-item">Kitoblar</a>
                             <a href="{% url 'team' %}" class="dropdown-item">Instructors</a>
                         </div>
-                    </div>
+                    </div> -->
                     <input type="text" name="q" class="form-control border-light" style="padding: 30px 25px;" placeholder="Search books..." value="{{ query }}">
                     <div class="input-group-append">
                         <button class="btn btn-secondary px-4 px-lg-5" type="submit">Search</button>
