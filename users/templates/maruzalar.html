@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>IMS - tuzilma va xizmarlar</title>
+    <title>IMS - Features</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -39,7 +39,7 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
                 <div class="navbar-nav mx-auto py-0">
-                    <a href="{% url 'index' %}" class="nav-item nav-link">Bosh sahifa</a>
+                    <a href="{% url 'index' %}" class="nav-item nav-link active">Bosh sahifa</a>
                     <a href="{% url 'about' %}" class="nav-item nav-link">Loyiha haqida</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Darslar</a>
@@ -52,20 +52,20 @@
                     <a href="{% url 'contact' %}" class="nav-item nav-link">Aloqa</a>
                 </div>
                 {% if user.is_authenticated %}
-                <div class="dropdown">
-                    <a class="btn btn-primary dropdown-toggle py-2 px-4 d-none d-lg-block" href="#" role="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Profil
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a href="{% url 'malumot' %}" class="dropdown-item">Ma'lumotlarim</a>
-                        <a href="{% url 'mycourse' %}" class="dropdown-item">Mening kurslarim</a>
-                        <a href="{% url 'sertifikat' %}" class="dropdown-item">Sertifikatlarim</a>
-                        <form method="post" action="{% url 'logout' %}">
-                            {% csrf_token %}
-                            <button type="submit" class="dropdown-item">Tizimdan chiqish</button>
-                        </form>
+                    <div class="dropdown">
+                        <a class="btn btn-primary dropdown-toggle py-2 px-4 d-none d-lg-block" href="#" role="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Profil
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                            <a href="{% url 'malumot' %}" class="dropdown-item">Ma'lumotlarim</a>
+                            <a href="{% url 'mycourse' %}" class="dropdown-item">Mening kurslarim</a>
+                            <a href="{% url 'sertifikat' %}" class="dropdown-item">Sertifikatlarim</a>
+                            <form method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="dropdown-item">Tizimdan chiqish</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
                 {% else %}
                     <a href="{% url 'login' %}" class="btn btn-primary py-2 px-4 d-none d-lg-block">Kirish</a>
                 {% endif %}
@@ -74,17 +74,15 @@
     </div>
     <!-- Navbar End -->
 
-
     <!-- Header Start -->
     <div class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom" style="margin-bottom: 90px;">
         <div class="container text-center py-5">
-            <h1 class="text-white display-1">Mening darslarim</h1>
+            <h1 class="text-white display-1">Maruzalar to'plami</h1>
             <div class="d-inline-flex text-white mb-5">
                 <p class="m-0 text-uppercase"><a class="text-white" href="{% url 'index' %}">Bosh sahifa</a></p>
                 <i class="fa fa-angle-double-right pt-1 px-3"></i>
-                <p class="m-0 text-uppercase">Profil</p>
-                <i class="fa fa-angle-double-right pt-1 px-3"></i>
-                <p class="m-0 text-uppercase">Mening kurslarim</p>
+                <p class="m-0 text-uppercase">maruzalar to'plami
+                </p>
             </div>
         </div>
         <div class="mx-auto mb-5" style="width: 100%; max-width: 600px;">
@@ -108,9 +106,8 @@
     </div>
     <!-- Header End -->
 
-
-    <!-- Courses Start -->
-    <div class="container-fluid py-5">
+      <!-- Courses Start -->
+      <div class="container-fluid py-5">
         <div class="container py-5">
             <div class="row mx-0 justify-content-center">
                 <div class="col-lg-8">
@@ -121,24 +118,26 @@
                 </div>
             </div>
             <div class="row">
-                {% for course in my_courses %}
                 <div class="col-lg-4 col-md-6 pb-4">
-                    <div class="card h-100 shadow-sm">
-                        <img class="card-img-top" src="{{ course.image.url }}" alt="{{ course.title }}">
-                        <div class="card-body">
-                            <h4 class="card-title"><a href="{% url 'course_detail' course.pk %}" class="text-dark">{{ course.title }}</a></h4>
-                            <p class="card-text">{{ course.description|truncatewords:15 }}</p>
+                    <a href="#" style="text-decoration: none;">
+                        <div class="card h-100 shadow-sm">
+                            <img class="card-img-top" src="https://storage.kun.uz/source/uploads/2017-1112/Maruf/kitob17.jpg" >
+                            <div class="card-body">
+                                <h4 class="card-title text-center">sertifikat</h4>
+                            </div>
+                            <div class="card-footer bg-white border-0">
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-muted"><i class="fa fa-user mr-2"></i>Nosirov </span>
+                                    <span class="text-muted"><i class="fa fa-star mr-2"></i>5</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-                {% empty %}
-                <p>No courses added yet.</p>
-                {% endfor %}
             </div>
         </div>
     </div>
     <!-- Courses End -->
-
 
     <!-- Footer Start -->
     <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5" style="margin-top: 90px;">
@@ -193,10 +192,8 @@
     </div>
     <!-- Footer End -->
 
-
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

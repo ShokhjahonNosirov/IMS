@@ -56,8 +56,8 @@ def sertifikat(request):
 def detail(request):
     return render(request, 'detail.html')
 
-def feature(request):
-    return render(request, 'feature.html')
+def maruzalar(request):
+    return render(request, 'maruzalar.html')
 
 def team(request):
     return render(request, 'team.html')

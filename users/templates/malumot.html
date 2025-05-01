@@ -2,207 +2,545 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>IMS - tuzilma va xizmarlar</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="Free HTML Templates" name="keywords" />
+    <meta content="Free HTML Templates" name="description" />
 
     <!-- Favicon -->
-    <link href="{% static 'img/favicon.ico' %}" rel="icon">
+    <link href="{% static 'img/favicon.ico' %}" rel="icon" />
 
     <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet" />
 
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet" />
 
     <!-- Libraries Stylesheet -->
-    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link
+      href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}"
+      rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
-</head>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  </head>
 
-<body>
+  <body>
     <!-- Navbar Start -->
     <div class="container-fluid p-0">
-        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
-            <a href="{% url 'index' %}" class="navbar-brand ml-lg-3">
-                <h1 class="m-0 text-uppercase text-primary"><i class="fa fa-book-reader mr-3"></i>IMS</h1>
-            </a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
-                <div class="navbar-nav mx-auto py-0">
-                    <a href="{% url 'index' %}" class="nav-item nav-link">Bosh sahifa</a>
-                    <a href="{% url 'about' %}" class="nav-item nav-link">Loyiha haqida</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Darslar</a>
-                        <div class="dropdown-menu m-0">
-                            <a href=" {% url 'course' %}" class="dropdown-item">Video darslar</a>
-                            <a href="{% url 'course' %}" class="dropdown-item">Kitoblar</a>
-                            <a href="{% url 'course' %}" class="dropdown-item">Instructors</a>
-                        </div>
-                    </div>
-                    <a href="{% url 'contact' %}" class="nav-item nav-link">Aloqa</a>
-                </div>
-                {% if user.is_authenticated %}
-                    <div class="dropdown">
-                        <a class="btn btn-primary dropdown-toggle py-2 px-4 d-none d-lg-block" href="#" role="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Profil
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                            <a href="{% url 'malumot' %}" class="dropdown-item">Ma'lumotlarim</a>
-                            <a href="{% url 'mycourse' %}" class="dropdown-item">Mening kurslarim</a>
-                            <a href="{% url 'sertifikat' %}" class="dropdown-item">Sertifikatlarim</a>
-                            <form method="post" action="{% url 'logout' %}">
-                                {% csrf_token %}
-                                <button type="submit" class="dropdown-item">Tizimdan chiqish</button>
-                            </form>
-                        </div>
-                    </div>
-                {% else %}
-                    <a href="{% url 'login' %}" class="btn btn-primary py-2 px-4 d-none d-lg-block">Kirish</a>
-                {% endif %}
+      <nav
+        class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
+        <a href="{% url 'index' %}" class="navbar-brand ml-lg-3">
+          <h1 class="m-0 text-uppercase text-primary">
+            <i class="fa fa-book-reader mr-3"></i>IMS
+          </h1>
+        </a>
+        <button
+          type="button"
+          class="navbar-toggler"
+          data-toggle="collapse"
+          data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-between px-lg-3"
+          id="navbarCollapse">
+          <div class="navbar-nav mx-auto py-0">
+            <a href="{% url 'index' %}" class="nav-item nav-link"
+              >Bosh sahifa</a
+            >
+            <a href="{% url 'about' %}" class="nav-item nav-link"
+              >Loyiha haqida</a
+            >
+            <div class="nav-item dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                data-toggle="dropdown"
+                aria-expanded="false"
+                >Darslar</a
+              >
+              <div class="dropdown-menu m-0">
+                <a href=" {% url 'course' %}" class="dropdown-item"
+                  >Video darslar</a
+                >
+                <a href="{% url 'books' %}" class="dropdown-item">Kitoblar</a>
+                <a href="{% url 'maruzalar' %}" class="dropdown-item"
+                  >Instructors</a
+                >
+              </div>
             </div>
-        </nav>
+            <a href="{% url 'contact' %}" class="nav-item nav-link">Aloqa</a>
+          </div>
+          {% if user.is_authenticated %}
+          <div class="dropdown">
+            <a
+              class="btn btn-primary dropdown-toggle py-2 px-4 d-none d-lg-block"
+              href="#"
+              role="button"
+              id="userDropdown"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false">
+              Profil
+            </a>
+            <div
+              class="dropdown-menu dropdown-menu-right"
+              aria-labelledby="userDropdown">
+              <a href="{% url 'malumot' %}" class="dropdown-item"
+                >Ma'lumotlarim</a
+              >
+              <a href="{% url 'mycourse' %}" class="dropdown-item"
+                >Mening kurslarim</a
+              >
+              <a href="{% url 'sertifikat' %}" class="dropdown-item"
+                >Sertifikatlarim</a
+              >
+              <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="dropdown-item">
+                  Tizimdan chiqish
+                </button>
+              </form>
+            </div>
+          </div>
+          {% else %}
+          <a
+            href="{% url 'login' %}"
+            class="btn btn-primary py-2 px-4 d-none d-lg-block"
+            >Kirish</a
+          >
+          {% endif %}
+        </div>
+      </nav>
     </div>
     <!-- Navbar End -->
 
-
     <!-- Header Start -->
-    <div class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom" style="margin-bottom: 90px;">
-        <div class="container text-center py-5">
-            <h1 class="text-white display-1">Ma'lumotlarim</h1>
-            <div class="d-inline-flex text-white mb-5">
-                <p class="m-0 text-uppercase"><a class="text-white" href="{% url 'index' %}">Bosh sahifa</a></p>
-                <i class="fa fa-angle-double-right pt-1 px-3"></i>
-                <p class="m-0 text-uppercase">Profil</p>
-                <i class="fa fa-angle-double-right pt-1 px-3"></i>
-                <p class="m-0 text-uppercase">Ma'lumotlarim</p>
+    <div
+      class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom"
+      style="margin-bottom: 90px">
+      <div class="container text-center py-5">
+        <h1 class="text-white display-1">Ma'lumotlarim</h1>
+        <div class="d-inline-flex text-white mb-5">
+          <p class="m-0 text-uppercase">
+            <a class="text-white" href="{% url 'index' %}">Bosh sahifa</a>
+          </p>
+          <i class="fa fa-angle-double-right pt-1 px-3"></i>
+          <p class="m-0 text-uppercase">Profil</p>
+          <i class="fa fa-angle-double-right pt-1 px-3"></i>
+          <p class="m-0 text-uppercase">Ma'lumotlarim</p>
+        </div>
+      </div>
+      <div class="mx-auto mb-5" style="width: 100%; max-width: 600px">
+        <form method="get" action="{% url 'course' %}">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <button
+                class="btn btn-outline-light bg-white text-body px-4 dropdown-toggle"
+                type="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                Darslar
+              </button>
+              <div class="dropdown-menu">
+                <a href=" {% url 'course' %}" class="dropdown-item"
+                  >Video darslar</a
+                >
+                <a href="{% url 'books' %}" class="dropdown-item">Kitoblar</a>
+                <a href="{% url 'maruzalar' %}" class="dropdown-item"
+                  >Instructors</a
+                >
+              </div>
             </div>
-        </div>
-        <div class="mx-auto mb-5" style="width: 100%; max-width: 600px;">
-            <form method="get" action="{% url 'course' %}">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <button class="btn btn-outline-light bg-white text-body px-4 dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Darslar</button>
-                        <div class="dropdown-menu">
-                            <a href=" {% url 'course' %}" class="dropdown-item">Video darslar</a>
-                            <a href="{% url 'course' %}" class="dropdown-item">Kitoblar</a>
-                            <a href="{% url 'course' %}" class="dropdown-item">Instructors</a>
-                        </div>
-                    </div>
-                    <input type="text" class="form-control border-light" style="padding: 30px 25px;" placeholder="Keyword">
-                    <div class="input-group-append">
-                        <button class="btn btn-secondary px-4 px-lg-5">Search</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+            <input
+              type="text"
+              class="form-control border-light"
+              style="padding: 30px 25px"
+              placeholder="Keyword" />
+            <div class="input-group-append">
+              <button class="btn btn-secondary px-4 px-lg-5">Search</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
     <!-- Header End -->
 
-
     <!-- Courses Start -->
     <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row mx-0 justify-content-center">
-                <div class="col-lg-8">
-                    <div class="section-title text-center position-relative mb-5">
-                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Bizning darslar</h6>
-                        <h1 class="display-4">Yangi darslarni biz bilan kuzatib boring</h1>
-                    </div>
-                </div>
+      <div class="container py-5">
+        <div class="row mx-0 justify-content-center">
+          <div class="col-lg-8">
+            <div class="section-title text-center position-relative mb-5">
+              <h6
+                class="d-inline-block position-relative text-secondary text-uppercase pb-2">
+                Bizning darslar
+              </h6>
+              <h1 class="display-4">
+                Yangi darslarni biz bilan kuzatib boring
+              </h1>
             </div>
-            <div class="row">
-                {% for course in courses %}
-                <div class="col-lg-4 col-md-6 pb-4">
-                    <div class="card h-100 shadow-sm">
-                        <img class="card-img-top" src="{{ course.image.url }}" alt="{{ course.title }}">
-                        <div class="card-body">
-                            <h4 class="card-title text-center">{{ course.title }}</h4>
-                            <p class="card-text">{{ course.description|truncatewords:15 }}</p>
-                        </div>
-                        <div class="card-footer bg-white border-0">
-                            <div class="d-flex justify-content-between">
-                                <span class="text-muted"><i class="fa fa-user mr-2"></i>{{ course.instructor }}</span>
-                                <span class="text-muted"><i class="fa fa-star mr-2"></i>{{ course.rating }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% empty %}
-                <p>No courses available.</p>
-                {% endfor %}
-            </div>
+          </div>
         </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-md-6 pb-4">
+            <div class="contact-form">
+              <form>
+                <div class="form-group d-flex align-items-center">
+                  <span
+                    style="
+                      flex: 0 0 190px;
+                      background: #e2e2e2;
+                      border-radius: 10px 0px 0px 10px;
+                      font-size: 14px;
+                      padding: 14px 24px;
+                      color: #727272;
+                      align-items: flex-start;
+                    ">
+                    <label class="m-0">Ism</label>
+                  </span>
+                  <input
+                    type="text"
+                    style="
+                      display: block;
+                      width: 100%;
+                      padding: 11px 24px;
+                      font-size: 1rem;
+                      font-weight: 400;
+                      line-height: 1.5;
+                      color: #212529;
+                      background-color: #fff;
+                      background-clip: padding-box;
+                      border: 1px solid #ced4da;
+                      -webkit-appearance: none;
+                      -moz-appearance: none;
+                      appearance: none;
+                      border-radius: 0.25rem;
+                      transition: border-color 0.15s ease-in-out,
+                        box-shadow 0.15s ease-in-out;
+                    "
+                    placeholder="Ism"
+                    required="required" />
+                </div>
+                <div class="form-group d-flex align-items-center">
+                  <span
+                    style="
+                      flex: 0 0 190px;
+                      background: #e2e2e2;
+                      border-radius: 10px 0px 0px 10px;
+                      font-size: 14px;
+                      padding: 14px 24px;
+                      color: #727272;
+                      align-items: flex-start;
+                    ">
+                    <label class="m-0">Familiya</label>
+                  </span>
+                  <input
+                    type="text"
+                    style="
+                      display: block;
+                      width: 100%;
+                      padding: 11px 24px;
+                      font-size: 1rem;
+                      font-weight: 400;
+                      line-height: 1.5;
+                      color: #212529;
+                      background-color: #fff;
+                      background-clip: padding-box;
+                      border: 1px solid #ced4da;
+                      -webkit-appearance: none;
+                      -moz-appearance: none;
+                      appearance: none;
+                      border-radius: 0.25rem;
+                      transition: border-color 0.15s ease-in-out,
+                        box-shadow 0.15s ease-in-out;
+                    "
+                    placeholder="Familiya"
+                    required="required" />
+                </div>
+                <div class="form-group d-flex align-items-center">
+                  <span
+                    style="
+                      flex: 0 0 190px;
+                      background: #e2e2e2;
+                      border-radius: 10px 0px 0px 10px;
+                      font-size: 14px;
+                      padding: 14px 24px;
+                      color: #727272;
+                      align-items: flex-start;
+                    ">
+                    <label class="m-0">Sharif</label>
+                  </span>
+                  <input
+                    type="text"
+                    style="
+                      display: block;
+                      width: 100%;
+                      padding: 11px 24px;
+                      font-size: 1rem;
+                      font-weight: 400;
+                      line-height: 1.5;
+                      color: #212529;
+                      background-color: #fff;
+                      background-clip: padding-box;
+                      border: 1px solid #ced4da;
+                      -webkit-appearance: none;
+                      -moz-appearance: none;
+                      appearance: none;
+                      border-radius: 0.25rem;
+                      transition: border-color 0.15s ease-in-out,
+                        box-shadow 0.15s ease-in-out;
+                    "
+                    placeholder="Sharif"
+                    required="required" />
+                </div>
+                <div class="form-group d-flex align-items-center">
+                  <span
+                    style="
+                      flex: 0 0 190px;
+                      background: #e2e2e2;
+                      border-radius: 10px 0px 0px 10px;
+                      font-size: 14px;
+                      padding: 14px 24px;
+                      color: #727272;
+                      align-items: flex-start;
+                    ">
+                    <label class="m-0">Yoshingiz</label>
+                  </span>
+                  <input
+                    type="number"
+                    style="
+                      display: block;
+                      width: 100%;
+                      padding: 11px 24px;
+                      font-size: 1rem;
+                      font-weight: 400;
+                      line-height: 1.5;
+                      color: #212529;
+                      background-color: #fff;
+                      background-clip: padding-box;
+                      border: 1px solid #ced4da;
+                      -webkit-appearance: none;
+                      -moz-appearance: none;
+                      appearance: none;
+                      border-radius: 0.25rem;
+                      transition: border-color 0.15s ease-in-out,
+                        box-shadow 0.15s ease-in-out;
+                    "
+                    placeholder="Yoshingiz"
+                    required="required" />
+                </div>
+                <div class="form-group d-flex align-items-center">
+                  <span
+                    style="
+                      flex: 0 0 190px;
+                      background: #e2e2e2;
+                      border-radius: 10px 0px 0px 10px;
+                      font-size: 14px;
+                      padding: 14px 24px;
+                      color: #727272;
+                      align-items: flex-start;
+                    ">
+                    <label class="m-0">Jinsingiz</label>
+                  </span>
+                  <select
+                    type="text"
+                    style="
+                      width: 100%;
+                      padding: 11px 24px;
+                      font-size: 1rem;
+                      font-weight: 400;
+                      line-height: 1.5;
+                      background-color: #fff;
+                      background-clip: padding-box;
+                      border: 1px solid #ced4da;
+                      -webkit-appearance: none;
+                      -moz-appearance: none;
+                      appearance: none;
+                      border-radius: 0.25rem;
+                      transition: border-color 0.15s ease-in-out,
+                        box-shadow 0.15s ease-in-out;
+                    "
+                    placeholder="Jinsingiz"
+                    required="required">
+                    <option value="1">Erkak</option>
+                    <option value="2">Ayol</option>
+                  </select>
+                </div>
+                <div class="form-group d-flex align-items-center">
+                  <span
+                    style="
+                      flex: 0 0 190px;
+                      background: #e2e2e2;
+                      border-radius: 10px 0px 0px 10px;
+                      font-size: 14px;
+                      padding: 14px 24px;
+                      color: #727272;
+                      align-items: flex-start;
+                    ">
+                    <label class="m-0">Viloyat</label>
+                  </span>
+                  <select
+                    type="text"
+                    style="
+                      width: 100%;
+                      padding: 11px 24px;
+                      font-size: 1rem;
+                      font-weight: 400;
+                      line-height: 1.5;
+                      background-color: #fff;
+                      background-clip: padding-box;
+                      border: 1px solid #ced4da;
+                      -webkit-appearance: none;
+                      -moz-appearance: none;
+                      appearance: none;
+                      border-radius: 0.25rem;
+                      transition: border-color 0.15s ease-in-out,
+                        box-shadow 0.15s ease-in-out;
+                    "
+                    placeholder="Jinsingiz"
+                    required="required">
+                    <option value="">Tanlang</option>
+                    <option value="2">Andijon viloyati</option>
+                    <option value="3">Buxoro viloyati</option>
+                    <option value="12">Farg‘ona viloyati</option>
+                    <option value="4">Jizzax viloyati</option>
+                    <option value="7">Namangan viloyati</option>
+                    <option value="6">Navoiy viloyati</option>
+                    <option value="5">Qashqadaryo viloyati</option>
+                    <option value="1">Qoraqalpog‘iston Respublikasi</option>
+                    <option value="8">Samarqand viloyati</option>
+                    <option value="10">Sirdaryo viloyati</option>
+                    <option value="9">Surxondaryo viloyati</option>
+                    <option value="14">Toshkent shahri</option>
+                    <option value="11">Toshkent viloyati</option>
+                    <option value="13">Xorazm viloyati</option>
+                  </select>
+                </div>
+                <div class="form-group d-flex align-items-center">
+                  <span
+                    style="
+                      flex: 0 0 190px;
+                      background: #e2e2e2;
+                      border-radius: 10px 0px 0px 10px;
+                      font-size: 14px;
+                      padding: 14px 24px;
+                      color: #727272;
+                      align-items: flex-start;
+                    ">
+                    <label class="m-0">Shahar yoki tuman</label>
+                  </span>
+                  <input
+                    type="text"
+                    style="
+                      display: block;
+                      width: 100%;
+                      padding: 11px 24px;
+                      font-size: 1rem;
+                      font-weight: 400;
+                      line-height: 1.5;
+                      color: #212529;
+                      background-color: #fff;
+                      background-clip: padding-box;
+                      border: 1px solid #ced4da;
+                      -webkit-appearance: none;
+                      -moz-appearance: none;
+                      appearance: none;
+                      border-radius: 0.25rem;
+                      transition: border-color 0.15s ease-in-out,
+                        box-shadow 0.15s ease-in-out;
+                    "
+                    placeholder="Shahar yoki tuman"
+                    required="required" />
+                </div>
+                <div>
+                  <button class="btn btn-primary py-3 px-5 w-100" type="submit">
+                    O'zgarishni saqlash
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- Courses End -->
 
-
     <!-- Footer Start -->
-    <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5" style="margin-top: 90px;">
-        <div class="container mt-5 pt-5">
-            <div class="row">
-                <div class="col-md-6 mb-5">
-                    <a href="{% url 'index' %}" class="navbar-brand">
-                        <h1 class="mt-n2 text-uppercase text-white"><i class="fa fa-book-reader mr-3"></i>IMS</h1>
-                    </a>
-                    <p class="m-0">"IMS - tuzilma va xizmarlar" online platformasi <br>
-                        Barcha huquqlar himoyalangan.</p>
-                </div>
-                <div class="col-md-6 mb-5">
-                    <div class="d-flex justify-content-start">
-                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-telegram"></i></a>
-                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-facebook-f"></i></a>
-                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-instagram"></i></a>
-                        <a class="text-white" href="#"><i class="fab fa-2x fa-youtube"></i></a>
-                    </div>
-                    
-                </div>
+    <div
+      class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5"
+      style="margin-top: 90px">
+      <div class="container mt-5 pt-5">
+        <div class="row">
+          <div class="col-md-6 mb-5">
+            <a href="{% url 'index' %}" class="navbar-brand">
+              <h1 class="mt-n2 text-uppercase text-white">
+                <i class="fa fa-book-reader mr-3"></i>IMS
+              </h1>
+            </a>
+            <p class="m-0">
+              "IMS - tuzilma va xizmarlar" online platformasi <br />
+              Barcha huquqlar himoyalangan.
+            </p>
+          </div>
+          <div class="col-md-6 mb-5">
+            <div class="d-flex justify-content-start">
+              <a class="text-white mr-4" href="#"
+                ><i class="fab fa-2x fa-telegram"></i
+              ></a>
+              <a class="text-white mr-4" href="#"
+                ><i class="fab fa-2x fa-facebook-f"></i
+              ></a>
+              <a class="text-white mr-4" href="#"
+                ><i class="fab fa-2x fa-instagram"></i
+              ></a>
+              <a class="text-white" href="#"
+                ><i class="fab fa-2x fa-youtube"></i
+              ></a>
             </div>
-            <div class="row justify-content-between">
-                <div class="col-lg-2 col-md-6 mb-5">
-                    <a href="#" class="navbar-brand">
-                        <h3 class="text-white mb-4">Loyiha haqida</h3>
-                    </a>
-                    
-                </div>
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <a href="#" class="navbar-brand">
-                        <h3 class="text-white mb-4 ">Foydalanish shartlari</h3>
-                    </a>
-                  
-                </div>
-                <div class="col-lg-2 col-md-6 mb-5">
-                    <a href="#" class="navbar-brand">
-                        <h3 class="text-white mb-4">Ommaviy oferta</h3>
-                    </a>
-                    
-                </div>
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <a href="#" class="navbar-brand">
-                        <h3 class="text-white mb-4">Foydalanish yo'riqnomasi
-                        </h3>
-                    </a>
-                    
-                </div>
-               
-            </div>
+          </div>
         </div>
+        <div class="row justify-content-between">
+          <div class="col-lg-2 col-md-6 mb-5">
+            <a href="#" class="navbar-brand">
+              <h3 class="text-white mb-4">Loyiha haqida</h3>
+            </a>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-5">
+            <a href="#" class="navbar-brand">
+              <h3 class="text-white mb-4">Foydalanish shartlari</h3>
+            </a>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-5">
+            <a href="#" class="navbar-brand">
+              <h3 class="text-white mb-4">Ommaviy oferta</h3>
+            </a>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-5">
+            <a href="#" class="navbar-brand">
+              <h3 class="text-white mb-4">Foydalanish yo'riqnomasi</h3>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- Footer End -->
 
-
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
+    <a
+      href="#"
+      class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"
+      ><i class="fa fa-angle-double-up"></i
+    ></a>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -214,6 +552,5 @@
 
     <!-- Template Javascript -->
     <script src="{% static 'js/main.js' %}"></script>
-</body>
-
+  </body>
 </html>
