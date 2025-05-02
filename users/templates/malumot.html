@@ -194,280 +194,88 @@
         <div class="row justify-content-center">
           <div class="col-lg-8 col-md-6 pb-4">
             <div class="contact-form">
-              <form>
+              <form method="post">
+                {% csrf_token %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                
                 <div class="form-group d-flex align-items-center">
-                  <span
-                    style="
-                      flex: 0 0 190px;
-                      background: #e2e2e2;
-                      border-radius: 10px 0px 0px 10px;
-                      font-size: 14px;
-                      padding: 14px 24px;
-                      color: #727272;
-                      align-items: flex-start;
-                    ">
-                    <label class="m-0">Ism</label>
-                  </span>
-                  <input
-                    type="text"
-                    style="
-                      display: block;
-                      width: 100%;
-                      padding: 11px 24px;
-                      font-size: 1rem;
-                      font-weight: 400;
-                      line-height: 1.5;
-                      color: #212529;
-                      background-color: #fff;
-                      background-clip: padding-box;
-                      border: 1px solid #ced4da;
-                      -webkit-appearance: none;
-                      -moz-appearance: none;
-                      appearance: none;
-                      border-radius: 0.25rem;
-                      transition: border-color 0.15s ease-in-out,
-                        box-shadow 0.15s ease-in-out;
-                    "
-                    placeholder="Ism"
-                    required="required" />
+                    <span style="flex: 0 0 190px; background: #e2e2e2; border-radius: 10px 0px 0px 10px; font-size: 14px; padding: 14px 24px; color: #727272; align-items: flex-start;">
+                        <label class="m-0">Ism</label>
+                    </span>
+                    <input type="text" name="first_name" value="{{ user.first_name }}" style="display: block; width: 100%; padding: 11px 24px; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #212529; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; -webkit-appearance: none; -moz-appearance: none; appearance: none; border-radius: 0.25rem; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;" placeholder="Ism" required="required" />
                 </div>
+                
                 <div class="form-group d-flex align-items-center">
-                  <span
-                    style="
-                      flex: 0 0 190px;
-                      background: #e2e2e2;
-                      border-radius: 10px 0px 0px 10px;
-                      font-size: 14px;
-                      padding: 14px 24px;
-                      color: #727272;
-                      align-items: flex-start;
-                    ">
-                    <label class="m-0">Familiya</label>
-                  </span>
-                  <input
-                    type="text"
-                    style="
-                      display: block;
-                      width: 100%;
-                      padding: 11px 24px;
-                      font-size: 1rem;
-                      font-weight: 400;
-                      line-height: 1.5;
-                      color: #212529;
-                      background-color: #fff;
-                      background-clip: padding-box;
-                      border: 1px solid #ced4da;
-                      -webkit-appearance: none;
-                      -moz-appearance: none;
-                      appearance: none;
-                      border-radius: 0.25rem;
-                      transition: border-color 0.15s ease-in-out,
-                        box-shadow 0.15s ease-in-out;
-                    "
-                    placeholder="Familiya"
-                    required="required" />
+                    <span style="flex: 0 0 190px; background: #e2e2e2; border-radius: 10px 0px 0px 10px; font-size: 14px; padding: 14px 24px; color: #727272; align-items: flex-start;">
+                        <label class="m-0">Familiya</label>
+                    </span>
+                    <input type="text" name="last_name" value="{{ user.last_name }}" style="display: block; width: 100%; padding: 11px 24px; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #212529; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; -webkit-appearance: none; -moz-appearance: none; appearance: none; border-radius: 0.25rem; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;" placeholder="Familiya" required="required" />
                 </div>
+                
                 <div class="form-group d-flex align-items-center">
-                  <span
-                    style="
-                      flex: 0 0 190px;
-                      background: #e2e2e2;
-                      border-radius: 10px 0px 0px 10px;
-                      font-size: 14px;
-                      padding: 14px 24px;
-                      color: #727272;
-                      align-items: flex-start;
-                    ">
-                    <label class="m-0">Sharif</label>
-                  </span>
-                  <input
-                    type="text"
-                    style="
-                      display: block;
-                      width: 100%;
-                      padding: 11px 24px;
-                      font-size: 1rem;
-                      font-weight: 400;
-                      line-height: 1.5;
-                      color: #212529;
-                      background-color: #fff;
-                      background-clip: padding-box;
-                      border: 1px solid #ced4da;
-                      -webkit-appearance: none;
-                      -moz-appearance: none;
-                      appearance: none;
-                      border-radius: 0.25rem;
-                      transition: border-color 0.15s ease-in-out,
-                        box-shadow 0.15s ease-in-out;
-                    "
-                    placeholder="Sharif"
-                    required="required" />
+                    <span style="flex: 0 0 190px; background: #e2e2e2; border-radius: 10px 0px 0px 10px; font-size: 14px; padding: 14px 24px; color: #727272; align-items: flex-start;">
+                        <label class="m-0">Sharif</label>
+                    </span>
+                    <input type="text" name="middle_name" value="{{ profile.middle_name }}" style="display: block; width: 100%; padding: 11px 24px; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #212529; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; -webkit-appearance: none; -moz-appearance: none; appearance: none; border-radius: 0.25rem; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;" placeholder="Sharif" required="required" />
                 </div>
+                
                 <div class="form-group d-flex align-items-center">
-                  <span
-                    style="
-                      flex: 0 0 190px;
-                      background: #e2e2e2;
-                      border-radius: 10px 0px 0px 10px;
-                      font-size: 14px;
-                      padding: 14px 24px;
-                      color: #727272;
-                      align-items: flex-start;
-                    ">
-                    <label class="m-0">Yoshingiz</label>
-                  </span>
-                  <input
-                    type="number"
-                    style="
-                      display: block;
-                      width: 100%;
-                      padding: 11px 24px;
-                      font-size: 1rem;
-                      font-weight: 400;
-                      line-height: 1.5;
-                      color: #212529;
-                      background-color: #fff;
-                      background-clip: padding-box;
-                      border: 1px solid #ced4da;
-                      -webkit-appearance: none;
-                      -moz-appearance: none;
-                      appearance: none;
-                      border-radius: 0.25rem;
-                      transition: border-color 0.15s ease-in-out,
-                        box-shadow 0.15s ease-in-out;
-                    "
-                    placeholder="Yoshingiz"
-                    required="required" />
+                    <span style="flex: 0 0 190px; background: #e2e2e2; border-radius: 10px 0px 0px 10px; font-size: 14px; padding: 14px 24px; color: #727272; align-items: flex-start;">
+                        <label class="m-0">Yoshingiz</label>
+                    </span>
+                    <input type="number" name="age" value="{{ profile.age }}" style="display: block; width: 100%; padding: 11px 24px; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #212529; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; -webkit-appearance: none; -moz-appearance: none; appearance: none; border-radius: 0.25rem; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;" placeholder="Yoshingiz" required="required" />
                 </div>
+                
                 <div class="form-group d-flex align-items-center">
-                  <span
-                    style="
-                      flex: 0 0 190px;
-                      background: #e2e2e2;
-                      border-radius: 10px 0px 0px 10px;
-                      font-size: 14px;
-                      padding: 14px 24px;
-                      color: #727272;
-                      align-items: flex-start;
-                    ">
-                    <label class="m-0">Jinsingiz</label>
-                  </span>
-                  <select
-                    type="text"
-                    style="
-                      width: 100%;
-                      padding: 11px 24px;
-                      font-size: 1rem;
-                      font-weight: 400;
-                      line-height: 1.5;
-                      background-color: #fff;
-                      background-clip: padding-box;
-                      border: 1px solid #ced4da;
-                      -webkit-appearance: none;
-                      -moz-appearance: none;
-                      appearance: none;
-                      border-radius: 0.25rem;
-                      transition: border-color 0.15s ease-in-out,
-                        box-shadow 0.15s ease-in-out;
-                    "
-                    placeholder="Jinsingiz"
-                    required="required">
-                    <option value="1">Erkak</option>
-                    <option value="2">Ayol</option>
-                  </select>
+                    <span style="flex: 0 0 190px; background: #e2e2e2; border-radius: 10px 0px 0px 10px; font-size: 14px; padding: 14px 24px; color: #727272; align-items: flex-start;">
+                        <label class="m-0">Jinsingiz</label>
+                    </span>
+                    <select name="gender" style="width: 100%; padding: 11px 24px; font-size: 1rem; font-weight: 400; line-height: 1.5; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; -webkit-appearance: none; -moz-appearance: none; appearance: none; border-radius: 0.25rem; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;" required="required">
+                        <option value="1" {% if profile.gender == '1' %}selected{% endif %}>Erkak</option>
+                        <option value="2" {% if profile.gender == '2' %}selected{% endif %}>Ayol</option>
+                    </select>
                 </div>
+                
                 <div class="form-group d-flex align-items-center">
-                  <span
-                    style="
-                      flex: 0 0 190px;
-                      background: #e2e2e2;
-                      border-radius: 10px 0px 0px 10px;
-                      font-size: 14px;
-                      padding: 14px 24px;
-                      color: #727272;
-                      align-items: flex-start;
-                    ">
-                    <label class="m-0">Viloyat</label>
-                  </span>
-                  <select
-                    type="text"
-                    style="
-                      width: 100%;
-                      padding: 11px 24px;
-                      font-size: 1rem;
-                      font-weight: 400;
-                      line-height: 1.5;
-                      background-color: #fff;
-                      background-clip: padding-box;
-                      border: 1px solid #ced4da;
-                      -webkit-appearance: none;
-                      -moz-appearance: none;
-                      appearance: none;
-                      border-radius: 0.25rem;
-                      transition: border-color 0.15s ease-in-out,
-                        box-shadow 0.15s ease-in-out;
-                    "
-                    placeholder="Jinsingiz"
-                    required="required">
-                    <option value="">Tanlang</option>
-                    <option value="2">Andijon viloyati</option>
-                    <option value="3">Buxoro viloyati</option>
-                    <option value="12">Farg‘ona viloyati</option>
-                    <option value="4">Jizzax viloyati</option>
-                    <option value="7">Namangan viloyati</option>
-                    <option value="6">Navoiy viloyati</option>
-                    <option value="5">Qashqadaryo viloyati</option>
-                    <option value="1">Qoraqalpog‘iston Respublikasi</option>
-                    <option value="8">Samarqand viloyati</option>
-                    <option value="10">Sirdaryo viloyati</option>
-                    <option value="9">Surxondaryo viloyati</option>
-                    <option value="14">Toshkent shahri</option>
-                    <option value="11">Toshkent viloyati</option>
-                    <option value="13">Xorazm viloyati</option>
-                  </select>
+                    <span style="flex: 0 0 190px; background: #e2e2e2; border-radius: 10px 0px 0px 10px; font-size: 14px; padding: 14px 24px; color: #727272; align-items: flex-start;">
+                        <label class="m-0">Viloyat</label>
+                    </span>
+                    <select name="region" style="width: 100%; padding: 11px 24px; font-size: 1rem; font-weight: 400; line-height: 1.5; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; -webkit-appearance: none; -moz-appearance: none; appearance: none; border-radius: 0.25rem; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;" required="required">
+                        <option value="{{ profile.region }}">{{ profile.region }} viloyati</option>
+                        <option value="2" {% if profile.region == '2' %}selected{% endif %}>Andijon viloyati</option>
+                        <option value="3" {% if profile.region == '3' %}selected{% endif %}>Buxoro viloyati</option>
+                        <option value="12" {% if profile.region == '12' %}selected{% endif %}>Farg'ona viloyati</option>
+                        <option value="4" {% if profile.region == '4' %}selected{% endif %}>Jizzax viloyati</option>
+                        <option value="7" {% if profile.region == '7' %}selected{% endif %}>Namangan viloyati</option>
+                        <option value="6" {% if profile.region == '6' %}selected{% endif %}>Navoiy viloyati</option>
+                        <option value="5" {% if profile.region == '5' %}selected{% endif %}>Qashqadaryo viloyati</option>
+                        <option value="1" {% if profile.region == '1' %}selected{% endif %}>Qoraqalpog'iston Respublikasi</option>
+                        <option value="8" {% if profile.region == '8' %}selected{% endif %}>Samarqand viloyati</option>
+                        <option value="10" {% if profile.region == '10' %}selected{% endif %}>Sirdaryo viloyati</option>
+                        <option value="9" {% if profile.region == '9' %}selected{% endif %}>Surxondaryo viloyati</option>
+                        <option value="14" {% if profile.region == '14' %}selected{% endif %}>Toshkent shahri</option>
+                        <option value="11" {% if profile.region == '11' %}selected{% endif %}>Toshkent viloyati</option>
+                        <option value="13" {% if profile.region == '13' %}selected{% endif %}>Xorazm viloyati</option>
+                    </select>
                 </div>
+                
                 <div class="form-group d-flex align-items-center">
-                  <span
-                    style="
-                      flex: 0 0 190px;
-                      background: #e2e2e2;
-                      border-radius: 10px 0px 0px 10px;
-                      font-size: 14px;
-                      padding: 14px 24px;
-                      color: #727272;
-                      align-items: flex-start;
-                    ">
-                    <label class="m-0">Shahar yoki tuman</label>
-                  </span>
-                  <input
-                    type="text"
-                    style="
-                      display: block;
-                      width: 100%;
-                      padding: 11px 24px;
-                      font-size: 1rem;
-                      font-weight: 400;
-                      line-height: 1.5;
-                      color: #212529;
-                      background-color: #fff;
-                      background-clip: padding-box;
-                      border: 1px solid #ced4da;
-                      -webkit-appearance: none;
-                      -moz-appearance: none;
-                      appearance: none;
-                      border-radius: 0.25rem;
-                      transition: border-color 0.15s ease-in-out,
-                        box-shadow 0.15s ease-in-out;
-                    "
-                    placeholder="Shahar yoki tuman"
-                    required="required" />
+                    <span style="flex: 0 0 190px; background: #e2e2e2; border-radius: 10px 0px 0px 10px; font-size: 14px; padding: 14px 24px; color: #727272; align-items: flex-start;">
+                        <label class="m-0">Shahar yoki tuman</label>
+                    </span>
+                    <input type="text" name="city" value="{{ profile.city }}" style="display: block; width: 100%; padding: 11px 24px; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #212529; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; -webkit-appearance: none; -moz-appearance: none; appearance: none; border-radius: 0.25rem; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;" placeholder="Shahar yoki tuman" required="required" />
                 </div>
+                
                 <div>
-                  <button class="btn btn-primary py-3 px-5 w-100" type="submit">
-                    O'zgarishni saqlash
-                  </button>
+                    <button class="btn btn-primary py-3 px-5 w-100" type="submit">O'zgarishni saqlash</button>
                 </div>
-              </form>
+            </form>
             </div>
           </div>
         </div>

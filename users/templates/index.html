@@ -41,6 +41,9 @@
                 <div class="navbar-nav mx-auto py-0">
                     <a href="{% url 'index' %}" class="nav-item nav-link active">Bosh sahifa</a>
                     <a href="{% url 'about' %}" class="nav-item nav-link">Loyiha haqida</a>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'team' %}" class="nav-item nav-link">Instructors</a>
+                    {% else %}
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Darslar</a>
                         <div class="dropdown-menu m-0">
@@ -49,6 +52,7 @@
                             <a href="{% url 'maruzalar' %}" class="dropdown-item">Maruzalar tuplami</a>
                         </div>
                     </div>
+                    {% endif %}
                     <a href="{% url 'contact' %}" class="nav-item nav-link">Aloqa</a>
                 </div>
                 {% if user.is_authenticated %}

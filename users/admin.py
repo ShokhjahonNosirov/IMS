@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 # Register your models here.
 
-from .models import Course, Book
+from .models import Course, Book, Maruza
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
@@ -12,5 +12,10 @@ class CourseAdmin(admin.ModelAdmin):
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
+    list_display = ('title', 'author', 'rating')
+    search_fields = ('title', 'author')
+
+@admin.register(Maruza)
+class MaruzaAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'rating')
     search_fields = ('title', 'author')

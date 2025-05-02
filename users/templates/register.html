@@ -1,3 +1,4 @@
+{% load form_tags %}
 <!-- templates/register.html -->
 <!DOCTYPE html>
 <html lang="en">
@@ -12,9 +13,78 @@
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
         <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
             <h2 class="text-center mb-4">Register</h2>
-            <form method="post">
+            <form method="post" class="needs-validation">
                 {% csrf_token %}
-                {{ form.as_p }}
+                
+                <div class="mb-3">
+                    <label for="id_username" class="form-label">Username</label>
+                    {{ form.username|add_class:"form-control" }}
+                    {% if form.username.errors %}
+                        <div class="invalid-feedback d-block">{{ form.username.errors }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="id_first_name" class="form-label">Ism</label>
+                        {{ form.first_name|add_class:"form-control" }}
+                    </div>
+                    <div class="col">
+                        <label for="id_last_name" class="form-label">Familiya</label>
+                        {{ form.last_name|add_class:"form-control" }}
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="id_middle_name" class="form-label">Sharif</label>
+                    {{ form.middle_name|add_class:"form-control" }}
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="id_age" class="form-label">Yoshingiz</label>
+                        {{ form.age|add_class:"form-control" }}
+                    </div>
+                    <div class="col">
+                        <label for="id_gender" class="form-label">Jinsingiz</label>
+                        {{ form.gender|add_class:"form-select" }}
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="id_region" class="form-label">Viloyat</label>
+                    {{ form.region|add_class:"form-select" }}
+                </div>
+                
+                <div class="mb-3">
+                    <label for="id_city" class="form-label">Shahar yoki tuman</label>
+                    {{ form.city|add_class:"form-control" }}
+                </div>
+                
+                <div class="mb-3">
+                    <label for="id_email" class="form-label">Email</label>
+                    {{ form.email|add_class:"form-control" }}
+                    {% if form.email.errors %}
+                        <div class="invalid-feedback d-block">{{ form.email.errors }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="mb-3">
+                    <label for="id_password1" class="form-label">Password</label>
+                    {{ form.password1|add_class:"form-control" }}
+                    {% if form.password1.errors %}
+                        <div class="invalid-feedback d-block">{{ form.password1.errors }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="mb-3">
+                    <label for="id_password2" class="form-label">Confirm Password</label>
+                    {{ form.password2|add_class:"form-control" }}
+                    {% if form.password2.errors %}
+                        <div class="invalid-feedback d-block">{{ form.password2.errors }}</div>
+                    {% endif %}
+                </div>
+                
                 <button type="submit" class="btn btn-primary w-100">Register</button>
             </form>
             <p class="text-center mt-3">

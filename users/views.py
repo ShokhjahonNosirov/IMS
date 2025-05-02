@@ -2,15 +2,28 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout
 from .forms import RegisterForm
-from .models import Course, Book
+from .models import Course, Book, Maruza, Profile  # Assuming you have a Profile model
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('login')  # or wherever you want
+            user = form.save()
+            
+            # Create profile for the new user
+            profile = Profile(
+                user=user,
+                middle_name=form.cleaned_data.get('middle_name'),
+                age=form.cleaned_data.get('age'),
+                gender=form.cleaned_data.get('gender'),
+                region=form.cleaned_data.get('region'),
+                city=form.cleaned_data.get('city')
+            )
+            profile.save()
+            
+            return redirect('login')
     else:
         form = RegisterForm()
     return render(request, 'register.html', {'form': form})
@@ -33,8 +46,29 @@ def contact(request):
 def course(request):
     return render(request, 'course.html')
 
+@login_required
 def malumot(request):
-    return render(request, 'malumot.html')
+    # Get the user's profile or create if it doesn't exist
+    profile, created = Profile.objects.get_or_create(user=request.user)
+    
+    if request.method == 'POST':
+        # Update user info
+        request.user.first_name = request.POST.get('first_name')
+        request.user.last_name = request.POST.get('last_name')
+        request.user.save()
+        
+        # Update profile info
+        profile.middle_name = request.POST.get('middle_name')
+        profile.age = request.POST.get('age')
+        profile.gender = request.POST.get('gender')
+        profile.region = request.POST.get('region')
+        profile.city = request.POST.get('city')
+        profile.save()
+        
+        messages.success(request, "Ma'lumotlaringiz muvaffaqiyatli yangilandi!")
+        return redirect('malumot')
+    
+    return render(request, 'malumot.html', {'profile': profile})
 
 @login_required
 def mycourse(request):
@@ -57,7 +91,13 @@ def detail(request):
     return render(request, 'detail.html')
 
 def maruzalar(request):
-    return render(request, 'maruzalar.html')
+    query = request.GET.get('q', '').strip()  # Get the search query and strip extra spaces
+    if query:
+        maruzalar = Maruza.objects.filter(title__icontains=query)  # Filter books by title
+        # print(f"Search Query: {query}, Results: {books}")  # Debugging
+    else:
+        maruzalar = Maruza.objects.all()  # Show all books if no query
+    return render(request, 'maruzalar.html', {'maruzalar': maruzalar, 'query': query})
 
 def team(request):
     return render(request, 'team.html')

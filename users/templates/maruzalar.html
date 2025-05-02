@@ -118,23 +118,27 @@
                 </div>
             </div>
             <div class="row">
+                {% for maruza in maruzalar %}
                 <div class="col-lg-4 col-md-6 pb-4">
-                    <a href="#" style="text-decoration: none;">
+                    <a href="{{ maruza.file.url }}" style="text-decoration: none;" target="_blank">
                         <div class="card h-100 shadow-sm">
-                            <img class="card-img-top" src="https://storage.kun.uz/source/uploads/2017-1112/Maruf/kitob17.jpg" >
+                            <img class="card-img-top" src="{{ maruza.image.url }}" alt="{{ maruza.title }}">
                             <div class="card-body">
-                                <h4 class="card-title text-center">sertifikat</h4>
+                                <h4 class="card-title text-center">{{ maruza.title }}</h4>
+                                <p class="text-center text-muted">By {{ maruza.author }}</p>
                             </div>
                             <div class="card-footer bg-white border-0">
                                 <div class="d-flex justify-content-between">
-                                    <span class="text-muted"><i class="fa fa-user mr-2"></i>Nosirov </span>
-                                    <span class="text-muted"><i class="fa fa-star mr-2"></i>5</span>
+                                    <span class="text-muted"><i class="fa fa-user mr-2"></i>{{ maruza.author }}</span>
+                                    <span class="text-muted"><i class="fa fa-star mr-2"></i>{{ maruza.rating }}</span>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
-            </div>
+                {% empty %}
+                <p class="text-center">No books found for your search.</p>
+                {% endfor %}
         </div>
     </div>
     <!-- Courses End -->
